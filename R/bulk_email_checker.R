@@ -9,12 +9,21 @@ bulk_email_checker <- function(email, key, sleep = 0) {
 
   Sys.sleep(sleep)
 
-  json <- glue::glue("http://api-v4.bulkemailchecker.com/?key={key}&email={email}") %>%
-    jsonlite::fromJSON()
+  json <- jsonlite::fromJSON(
+      glue::glue("http://api-v4.bulkemailchecker.com/?key={key}&email={email}")
+    )
 
-  time <- lubridate::today() %>%
-    as.character()
+  time <- as.character(
+    lubridate::today()
+  )
+  
+  json$status <- switch(
+    json$status,
+    passed = "valid",
+    unknown = "unknown",
+    failed = "invalid"
+  )
 
-  data.frame("status" = json$status, "event" = json$event, "details" = json$details, "time" = time)
+  data.frame("status" = json$status, "event" = json$event, "details" = json$details, "time" = time, stringsAsFactors = FALSE)
 
 }
