@@ -7,7 +7,10 @@ listflow_import_csv <- function(file) {
 
   listflow_import_csv <- read.csv2(file, fileEncoding = "UTF-8-BOM") %>%
     dplyr::as_tibble() %>%
-    patchr::normalise_colnames() %>%
+    dplyr::rename_all(tolower) %>% 
+    dplyr::rename_all(stringr::str_replace_all, "[[:punct:]\\s]+", "_") %>% 
+    dplyr::rename_all(stringr::str_remove_all, "[^\\w]") %>% 
+    dplyr::rename_all(stringi::stri_trans_general, "latin-ascii") %>% 
     dplyr::mutate(service = "listflow.io") %>%
     dplyr::mutate(
       email_validity = dplyr::case_when(
