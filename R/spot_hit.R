@@ -44,7 +44,7 @@ spot_hit_send_sms <- function(message, destinataires, key, expediteur = NULL, ty
 
 #' spot_hit_list_short_url
 #'
-#' @param api_key API key
+#' @param key API key
 #'
 #' @export
 spot_hit_list_short_url <- function(key) {
@@ -96,7 +96,7 @@ spot_hit_add_short_url <- function(adresse_cible, extension, key, nom = NULL, do
 #' spot_hit_remove_short_url
 #'
 #' @param id \dots
-#' @param api_key API key
+#' @param key API key
 #'
 #' @export
 spot_hit_remove_short_url <- function(id, key) {

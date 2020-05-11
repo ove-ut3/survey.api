@@ -9,7 +9,7 @@ spot_hit_remove_short_url(id, key)
 \arguments{
 \item{id}{\dots}
 
-\item{api_key}{API key}
+\item{key}{API key}
 }
 \description{
 spot_hit_remove_short_url
