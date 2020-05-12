@@ -7,7 +7,7 @@
 spot_hit_list_short_url(key)
 }
 \arguments{
-\item{api_key}{API key}
+\item{key}{API key}
 }
 \description{
 spot_hit_list_short_url
